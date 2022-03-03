@@ -34,20 +34,21 @@ async function run() {
     })
 
     // get api for orders
-    app.get('/orders',(req,res)=>{
-      const cursor = ordersCollection.find({})
-      const orders = await cursor.toArray();
-      res.send(orders) 
-    })
+    // app.get('/orders',(req,res)=>{
+    //   const cursor = ordersCollection.find({})
+    //   const orders = await cursor.toArray();
+    //   res.send(orders) 
+    // })
 
     // post api
-    app.post('/orders', async(req,res)=>{
-      const newOrder = req.body;
-      const result = await offersCollection.insertOne(newOrder)
-      console.log('got new order', req.body)
-      console.log('added order', result)
-      res.json(result)
-    })
+    // app.post('/orders', async(req,res)=>{
+    //   const newOrder = req.body;
+    //   const result = await offersCollection.insertOne(newOrder)
+    //   console.log('got new order', req.body)
+    //   console.log('added order', result)
+    //   res.json(result)
+    // })
+    
 
     // post api
     app.post('/offers', async(req,res)=>{
