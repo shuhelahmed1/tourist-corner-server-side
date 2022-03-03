@@ -33,6 +33,13 @@ async function run() {
       res.send(offer)
     })
 
+    // get api for orders
+    app.get('/orders',(req,res)=>{
+      const cursor = ordersCollection.find({})
+      const orders = await cursor.toArray();
+      res.send(orders) 
+    })
+
     // post api
     app.post('/orders', async(req,res)=>{
       const newOrder = req.body;
