@@ -53,7 +53,7 @@ async function run() {
     // post api
     app.post('/orders', async(req,res)=>{
       const newOrder = req.body;
-      const result = await offersCollection.insertOne(newOrder)
+      const result = await ordersCollection.insertOne(newOrder)
       console.log('got new user', req.body)
       console.log('added user', result)
       res.json(result)
