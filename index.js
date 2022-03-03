@@ -15,6 +15,7 @@ async function run() {
     await client.connect();
     const database = client.db("tourist-corner");
     const offersCollection = database.collection("offers");
+    const ordersCollection = database.collection("orders");
 
     // get api
     app.get('/offers',async(req,res)=>{
@@ -30,6 +31,15 @@ async function run() {
       const offer = await offersCollection.findOne(query)
       console.log('load user with id',id);
       res.send(offer)
+    })
+
+    // post api
+    app.post('/orders', async(req,res)=>{
+      const newOrder = req.body;
+      const result = await offersCollection.insertOne(newOrder)
+      console.log('got new order', req.body)
+      console.log('added order', result)
+      res.json(result)
     })
 
     // post api
@@ -51,5 +61,5 @@ app.get('/', (req, res) => {
 })
 
 app.listen(port, () => {
-  console.log(`Example  listening${port}`)
+  console.log(`listening to port ${port}`)
 })
