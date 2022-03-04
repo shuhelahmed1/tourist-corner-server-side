@@ -63,7 +63,8 @@ async function run() {
       const id = req.params.id;
       const query = {_id: ObjectId(id)};
       const result = await ordersCollection.deleteOne(query)
-      res.json(1)
+      console.log(result)
+      res.json(result)
     })
    
   } finally {
