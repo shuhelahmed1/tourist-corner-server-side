@@ -66,7 +66,7 @@ async function run() {
     app.get('/orders/:id',async(req,res)=>{
       const id = req.params.id;
       const query = {_id: ObjectId(id)}
-      const order = ordersCollection.find(query);
+      const order = ordersCollection.findOne(query);
       res.json(order)
     })
     
