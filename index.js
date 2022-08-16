@@ -29,7 +29,6 @@ async function run() {
       const id = req.params.id;
       const query = {_id: ObjectId(id)}
       const offer = await offersCollection.findOne(query)
-      console.log('load user with id',id);
       res.send(offer)
     })
 
@@ -48,6 +47,14 @@ async function run() {
       const orders = await cursor.toArray();
       res.send(orders)
     })
+
+    // get api for particular order id
+    app.get('/orders/:id',async(req,res)=>{
+      const id = req.params.id;
+      const query = {_id: ObjectId(id)}
+      const order = ordersCollection.find(query);
+      res.json(order)
+    })
     
     // post api for orders
     app.post('/orders', async(req,res)=>{
@@ -63,7 +70,6 @@ async function run() {
       const id = req.params.id;
       const query = {_id: ObjectId(id)};
       const result = await ordersCollection.deleteOne(query)
-      console.log(result)
       res.json(result)
     })
    
