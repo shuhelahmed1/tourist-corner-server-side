@@ -64,12 +64,12 @@ async function run() {
     })
 
     // get api for particular order id
-    app.get('/orders/:id',async(req,res)=>{
-      const id = req.params.id;
-      const query = {_id: ObjectId(id)}
-      const order = ordersCollection.find(query);
-      res.json(order)
-    })
+    // app.get('/orders/:id',async(req,res)=>{
+    //   const id = req.params.id;
+    //   const query = {_id: ObjectId(id)}
+    //   const order = ordersCollection.find(query);
+    //   res.json(order)
+    // })
     
     // post api for orders
     app.post('/orders', async(req,res)=>{
