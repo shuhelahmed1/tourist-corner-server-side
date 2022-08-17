@@ -80,14 +80,18 @@ async function run() {
     })
 
     // put api for orders
-    // app.put('/orders/:id', async(req,res)=>{
-    //   const id = req.params.id;
-    //   const query = {_id: ObjectId(id)};
-    //   const options = {upsert: true}
-    //   const updateDoc = {$set: {address: updatedOrder.address}}
-    //   const result = await ordersCollection.updateOne(query,updateDoc,options)
-    //   res.json(result)
-    // })
+    app.put('/orders/:id', async(req,res)=>{
+      const id = req.params.id;
+      const query = {_id: ObjectId(id)};
+      const updatedUser = req.body;
+      const options = {upsert: true}
+      const updateDoc = {$set: {
+        address: updatedUser.address,
+        phone: updatedUser.phone
+      }}
+      const result = await ordersCollection.updateOne(query,updateDoc,options)
+      res.json(result)
+    })
    
   } finally {
     // await client.close();
