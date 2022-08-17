@@ -61,14 +61,6 @@ async function run() {
       const orders = await cursor.toArray();
       res.send(orders)
     })
-
-    // get api for particular order id
-    // app.get('/orders/:id',async(req,res)=>{
-    //   const id = req.params.id;
-    //   const query = {_id: ObjectId(id)}
-    //   const order = ordersCollection.findOne(query);
-    //   res.json(order)
-    // })
     
     // post api for orders
     app.post('/orders', async(req,res)=>{
@@ -84,6 +76,16 @@ async function run() {
       const id = req.params.id;
       const query = {_id: ObjectId(id)};
       const result = await ordersCollection.deleteOne(query)
+      res.json(result)
+    })
+
+    // put api for orders
+    app.put('/orders/:id', async(req,res)=>{
+      const id = req.params.id;
+      const query = {_id: ObjectId(id)};
+      const options = {upsert: true}
+      const updateDoc = {$set: {address: updatedOrder.address}}
+      const result = await ordersCollection.updateOne(query,updateDoc,options)
       res.json(result)
     })
    
